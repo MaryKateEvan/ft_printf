@@ -6,7 +6,7 @@
 /*   By: mevangel <mevangel@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:17:43 by mevangel          #+#    #+#             */
-/*   Updated: 2023/05/16 20:06:13 by mevangel         ###   ########.fr       */
+/*   Updated: 2023/05/16 23:38:02 by mevangel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 //or a negative value if an error occurs
 
 //i have to handle these 9 format specifiers: cspdiuxX%
-
-#include <stdarg.h>
-#include <unistd.h>
 
 // void	ft_putchar(char c)
 // {
@@ -33,6 +30,8 @@
 // 	return (i);
 // }
 
+#include <stdarg.h>
+#include <unistd.h>
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -70,33 +69,35 @@ int	ft_print_s(va_list args)
 	return (i);
 }
 
-// int	ft_putnbr(int n, int *pr_chars)
-// {
-// 	//int	count;
+int	ft_print_number(int n)
+{
+	int	count;
 
-// 	if (n == -2147483648)
-// 	{
-// 		write (1, "-2147483648", 11);
-// 		return (11);
-// 	}
-// 	else if (n < 0)
-// 	{
-// 		ft_putchar('-');
-// 		n = n * (-1);
-// 		(*pr_chars)++;
-// 	}
-// 	else if (n > 9)
-// 	{
-// 		ft_putnbr((n / 10), &pr_chars);
-// 		ft_putnbr((n % 10), &pr_chars);
-// 		//count++;
-// 	}
-// 	else
-// 	{
-// 		ft_putchar(n + '0');
-// 		(*pr_chars)++;
-// 	}
-// 	return (*pr_chars);
+	count = 0;
+	if (n == -2147483648)
+	{
+		write (1, "-2147483648", 11);
+		return (11);
+	}
+	else if (n < 0)
+	{
+		write(1, "-", 1);
+		n = n * (-1);
+		count++;
+	}
+	if (n > 9)
+		count += ft_print_number(n / 10);
+	write(1, &"0123456789"[n % 10], 1);
+	count++;
+	return (count);
+}
+
+// int	ft_print_number(va_list args)
+// {
+// 	int	num;
+
+// 	num = va_arg(args, int);
+// 	ft_putnbr(num);
 // }
 
 int	format_specifiers(char type, va_list args, int *pr_chars)
@@ -104,15 +105,13 @@ int	format_specifiers(char type, va_list args, int *pr_chars)
 	if (type == 'c')
 		return(ft_print_c(args));
 	else if (type == 's')
-		*pr_chars += ft_print_s(args);
-	// else if (type == 'd')
-	// {
-	// 	*pr_chars += ft_putnbr(va_arg(args, int), &pr_chars);
-	// }
+		return(ft_print_s(args));
+	else if (type == 'd' || type == 'i' || type == 'u')
+		return (ft_print_number(va_arg(args, int)));
+	else if (type == '%')
+		return(write(1, "%", 1));
 	return (*pr_chars);
 }
-
-
 
 int	ft_printf(const char *str, ...)
 {
@@ -147,26 +146,27 @@ int	ft_printf(const char *str, ...)
 	
 // }
 
-#include <stdio.h>
+// #include <stdio.h>
 
-int main(void)
-{
-	int i = 234678;
-	int a;
-	int b;
-	char x = 'y';
+// int main(void)
+// {
+// 	int i = 234678;
+// 	int a;
+// 	int b;
+// 	char x = 'y';
+// 	char *str = "Hello world, MK here!";
 	
-	// a = ft_printf("the ft_number is: %d\n", i);
-	// b = printf("the or_number is: %d\n", i);
-	//a = ft_printf("The character is %c\n", x);
-	a = ft_printf("Mine gives\n");
-	b = printf("Orig gives\n");
-	//b = printf("original  gives: %d\n", i);
-	//b = printf("The character is %c\n", x);
-	printf("Value returned from my printf is: %d\n", a);
-	printf("Value returned from original printf is: %d\n", b);
-	return 0;
-}
+// 	a = ft_printf("the ft_number is: %d\n", i);
+// 	b = printf("the or_number is: %d\n", i);
+// 	//a = ft_printf("The character is %c\n", x);
+// 	// a = ft_printf("Mine gives: abcd%%efg\n");
+// 	// b = printf("Orig gives: abcd%%efg\n");
+// 	//b = printf("original  gives: %d\n", i);
+// 	//b = printf("The character is %c\n", x);
+// 	printf("Value returned from my printf is: %d\n", a);
+// 	printf("Value returned from original printf is: %d\n", b);
+// 	return 0;
+// }
 
 
 // #include <stdio.h>
