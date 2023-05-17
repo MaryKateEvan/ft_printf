@@ -6,7 +6,7 @@
 /*   By: mevangel <mevangel@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:17:43 by mevangel          #+#    #+#             */
-/*   Updated: 2023/05/16 23:38:02 by mevangel         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:45:16 by mevangel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 #include <stdarg.h>
 #include <unistd.h>
+#include "ft_printf.h"
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -46,40 +47,29 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-int	ft_print_c(va_list args)
+int	ft_print_c(int c)
 {
-	char	c;
-
-	c = va_arg(args, int);
 	return (write(1, &c, 1));
 }
 
-int	ft_print_s(va_list args)
+int	ft_print_s(char *str)
 {
-	char	*str;
 	int		i;
 
-	str = va_arg(args, char *);
 	i = 0;
+	if (str == NULL)
+		return(write(1, "(null)", 6));
 	while(str[i])
-	{
-		write(1, &str[i], 1);
 		i++;
-	}
-	return (i);
+	return (write(1, str, i));
 }
 
-int	ft_print_number(int n)
+int	ft_print_number(long int n)
 {
 	int	count;
 
 	count = 0;
-	if (n == -2147483648)
-	{
-		write (1, "-2147483648", 11);
-		return (11);
-	}
-	else if (n < 0)
+	if (n < 0)
 	{
 		write(1, "-", 1);
 		n = n * (-1);
@@ -92,25 +82,23 @@ int	ft_print_number(int n)
 	return (count);
 }
 
-// int	ft_print_number(va_list args)
-// {
-// 	int	num;
+//int	ft_print_p()
 
-// 	num = va_arg(args, int);
-// 	ft_putnbr(num);
-// }
-
-int	format_specifiers(char type, va_list args, int *pr_chars)
+int	format_specifiers(char type, va_list args)
 {
 	if (type == 'c')
-		return(ft_print_c(args));
+		return(ft_print_c(va_arg(args, int)));
 	else if (type == 's')
-		return(ft_print_s(args));
-	else if (type == 'd' || type == 'i' || type == 'u')
+		return(ft_print_s(va_arg(args, char *)));
+	else if (type == 'd' || type == 'i')
 		return (ft_print_number(va_arg(args, int)));
+	else if (type == 'u')
+		return (ft_print_number(va_arg(args, unsigned int)));
 	else if (type == '%')
 		return(write(1, "%", 1));
-	return (*pr_chars);
+	// else if (type == 'p')
+	// 	return();
+	return (0);
 }
 
 int	ft_printf(const char *str, ...)
@@ -126,9 +114,9 @@ int	ft_printf(const char *str, ...)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '%' && ft_strchr(specifiers, str[i + 1]))
+		if (str[i] == '%')
 		{
-			pr_chars += format_specifiers(str[i + 1], args, &pr_chars);
+			pr_chars += format_specifiers(str[i + 1], args);
 			i += 2;
 		}
 		else
@@ -150,14 +138,14 @@ int	ft_printf(const char *str, ...)
 
 // int main(void)
 // {
-// 	int i = 234678;
+// 	unsigned int i = 4294967295;
 // 	int a;
 // 	int b;
 // 	char x = 'y';
 // 	char *str = "Hello world, MK here!";
 	
-// 	a = ft_printf("the ft_number is: %d\n", i);
-// 	b = printf("the or_number is: %d\n", i);
+// 	a = ft_printf("the ft_number is: %u\n", i);
+// 	b = printf("the or_number is: %u\n", i);
 // 	//a = ft_printf("The character is %c\n", x);
 // 	// a = ft_printf("Mine gives: abcd%%efg\n");
 // 	// b = printf("Orig gives: abcd%%efg\n");
