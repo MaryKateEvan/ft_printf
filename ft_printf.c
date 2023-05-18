@@ -6,7 +6,7 @@
 /*   By: mevangel <mevangel@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:17:43 by mevangel          #+#    #+#             */
-/*   Updated: 2023/05/17 18:45:16 by mevangel         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:01:45 by mevangel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@
 
 #include <stdarg.h>
 #include <unistd.h>
-#include "ft_printf.h"
+#include "printf.h"
+#include <stdio.h>
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -82,7 +83,34 @@ int	ft_print_number(long int n)
 	return (count);
 }
 
-//int	ft_print_p()
+int	ft_print_hexa(size_t dec, char type)
+{
+	char	*hexadigits;
+	char	num[16];
+	int		i;
+
+	i = 16;
+	hexadigits = "0123456789abcdef";
+	if (dec == 0)
+		return (write(1, "0", 1));
+	if (type == 'X')
+		hexadigits = "0123456789ABCDEF";
+	while(dec > 0 && i >= 0)
+	{
+		num[--i] = hexadigits[dec % 16];
+		dec = dec / 16;
+	}
+	return (write(1, num + i, 16 - i));
+}
+
+int	ft_print_p(void *ptr)
+{
+	if (ptr == NULL)
+		return (write(1, "0x0", 3));
+	if (write(1, "0x", 2) < 0)
+		return (-1);
+	return(ft_print_hexa((size_t)ptr, 'x') + 2);
+}
 
 int	format_specifiers(char type, va_list args)
 {
@@ -94,10 +122,12 @@ int	format_specifiers(char type, va_list args)
 		return (ft_print_number(va_arg(args, int)));
 	else if (type == 'u')
 		return (ft_print_number(va_arg(args, unsigned int)));
-	else if (type == '%')
+	else if (type == 'x' || type == 'X')
+		return (ft_print_hexa((size_t)va_arg(args, unsigned int), type));
+	else if (type == 'p')
+		return (ft_print_p(va_arg(args, void *)));
+	else
 		return(write(1, "%", 1));
-	// else if (type == 'p')
-	// 	return();
 	return (0);
 }
 
@@ -129,23 +159,18 @@ int	ft_printf(const char *str, ...)
 	return (pr_chars);
 }
 
-// int	ft_print_s(va_list args)
-// {
-	
-// }
-
 // #include <stdio.h>
 
 // int main(void)
 // {
-// 	unsigned int i = 4294967295;
+// 	unsigned int i = 234567;
 // 	int a;
 // 	int b;
 // 	char x = 'y';
 // 	char *str = "Hello world, MK here!";
 	
-// 	a = ft_printf("the ft_number is: %u\n", i);
-// 	b = printf("the or_number is: %u\n", i);
+// 	a = ft_printf("the ft_number is: %p\n", str);
+// 	b = printf("the or_number is: %p\n", str);
 // 	//a = ft_printf("The character is %c\n", x);
 // 	// a = ft_printf("Mine gives: abcd%%efg\n");
 // 	// b = printf("Orig gives: abcd%%efg\n");
@@ -153,6 +178,7 @@ int	ft_printf(const char *str, ...)
 // 	//b = printf("The character is %c\n", x);
 // 	printf("Value returned from my printf is: %d\n", a);
 // 	printf("Value returned from original printf is: %d\n", b);
+// 	//system("leaks a.out");
 // 	return 0;
 // }
 
@@ -182,5 +208,16 @@ int	ft_printf(const char *str, ...)
 //     return 0;
 // }
 
+//the part of hexafunnction that i deleted:
 
+//count = 0;
+	// while (i < 16)
+	// {
+	// 	// if (write(1, &num[i++], 1) < 0)
+	// 	// 	return (-1);
+	// 	if (write(1, num + i, 16 - i) < 0)
+	// 		return (-1);
+	// 	count++;
+	// }
+	// return (count);
 
