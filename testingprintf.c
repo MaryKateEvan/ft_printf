@@ -1,18 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   testingprintf.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mevangel <mevangel@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:17:43 by mevangel          #+#    #+#             */
-/*   Updated: 2023/05/18 20:39:05 by mevangel         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:29:42 by mevangel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//the return type of printf is int, indicating the number of characters printed, 
+//or a negative value if an error occurs
+
+//i have to handle these 9 format specifiers: cspdiuxX%
+
+// void	ft_putchar(char c)
+// {
+// 	write(1, &c, 1);
+// }
+
+// size_t	ft_strlen(const char *s)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (s[i] != '\0')
+// 		i++;
+// 	return (i);
+// }
 
 #include <stdarg.h>
 #include <unistd.h>
 #include "printf.h"
+#include <stdio.h>
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -51,15 +72,13 @@ int	ft_print_number(long int n)
 	count = 0;
 	if (n < 0)
 	{
-		if (write(1, "-", 1) < 0)
-			return (-1);
+		write(1, "-", 1);
 		n = n * (-1);
 		count++;
 	}
 	if (n > 9)
 		count += ft_print_number(n / 10);
-	if (write(1, &"0123456789"[n % 10], 1) < 0)
-		return (-1);
+	write(1, &"0123456789"[n % 10], 1);
 	count++;
 	return (count);
 }
@@ -109,7 +128,7 @@ int	format_specifiers(char type, va_list args)
 		return (ft_print_p(va_arg(args, void *)));
 	else
 		return(write(1, "%", 1));
-	return (-1);
+	return (0);
 }
 
 int	ft_printf(const char *str, ...)
@@ -118,11 +137,11 @@ int	ft_printf(const char *str, ...)
 	int	pr_chars; //for pr_chars
 	char *specifiers;
 	int	i;
-	//int	writefail;
+	int	writefail;
 
 	va_start(args, str);
 	pr_chars = 0;
-	//writefail = 1;
+	writefail = 1;
 	specifiers = "cspdiuxX%";
 	i = 0;
 	while (str[i])
@@ -130,9 +149,9 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			pr_chars += format_specifiers(str[i + 1], args);
-			// writefail *= pr_chars;
-			// if (writefail < 0)
-			// 	return (-1);
+			writefail *= pr_chars;
+			if (writefail < 0)
+				return (-1);
 			i += 2;
 		}
 		else
