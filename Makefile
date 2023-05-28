@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mevangel <mevangel@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/21 15:04:14 by mevangel          #+#    #+#              #
-#    Updated: 2023/05/17 18:29:26 by mevangel         ###   ########.fr        #
+#    Created: 2023/05/19 22:04:57 by mevangel          #+#    #+#              #
+#    Updated: 2023/05/19 22:05:05 by mevangel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS := -Wall -Wextra -Werror
 
 CC := cc
 
-SRCS := ft_printf.c
+SRCS := ft_printf.c printing_functions.c
 
 OBJS := $(SRCS:%.c=%.o)
 
@@ -36,4 +36,4 @@ re: fclean all
 
 all: $(NAME)
 
-.PHONY: all clean fclean bonus re
+.PHONY: all clean fclean re
