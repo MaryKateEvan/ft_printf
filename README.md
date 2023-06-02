@@ -1,12 +1,11 @@
 # ft_printf
 
-## second header
-#### 4th level of header
+> The goal of this project was pretty straightforward. We recoded `printf()`, learning on the way how to handle a variable number of arguments.
 
 The following **9 conversions** had to be implemented in the project:<br>
-• `%c` Prints a single character.<br>
-• `%s` Prints a string (as defined by the common C convention).<br>
-• `%p` The void * pointer argument has to be printed in *hexadecimal* format.<br>
+* `%c` Prints a single character.<br>
+* `%s` Prints a string (as defined by the common C convention).<br>
+* `%p` The void * pointer argument has to be printed in *hexadecimal* format.<br>
 • `%d` Prints a decimal (base 10) number.<br>
 • `%i` Prints an integer in base 10.<br>
 • `%u` Prints an unsigned decimal (base 10) number.<br>
@@ -41,5 +40,19 @@ int	ft_printf(const char *str, ...)
 }
 ```
 
+My intra profile [here](https://profile.intra.42.fr/users/mevangel)<br>
 
+![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
 
+- George Washington
+* John Adams
++ Thomas Jefferson
++ Thom Jef
+* John Adams
+
+- 42 Community:
+  - Bocal
+  - students
+    - MK
+	- Harsh
+	- Eugen
