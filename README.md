@@ -1,4 +1,4 @@
-# [![My Skills](https://skillicons.dev/icons?i=c)](https://skillicons.dev)'s ft_printf
+# [![My Skills](https://skillicons.dev/icons?i=c)](https://skillicons.dev)<sup>'s ft_printf </sup>
 
 > The goal of this project was pretty straightforward. We had to recode `printf()`, in order to learn on the way how to handle a variable number of arguments.
 
