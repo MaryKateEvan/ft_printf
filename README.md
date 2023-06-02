@@ -24,7 +24,7 @@ _option 2 for italic_<sub>This is a subscript text</sub>
 > text that is a quote
 
 The prototype of `ft_printf()` is:
-> `int ft_printf(const char *, ...);`
+`int ft_printf(const char *, ...);`
 
 
 
