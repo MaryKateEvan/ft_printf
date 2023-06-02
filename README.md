@@ -26,7 +26,7 @@ _option 2 for italic_<sub>This is a subscript text</sub>
 The prototype of `ft_printf()` is:<br>
 `int ft_printf(const char *, ...);`
 
-Many lines of code:<br>
+Many lines of code:
 ```
 int	ft_printf(const char *str, ...)
 {
