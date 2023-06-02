@@ -3,7 +3,7 @@
 ## second header
 #### 4th level of header
 
-The following **9 conversions** had to be implemented:<br>
+The following **9 conversions** had to be implemented in the project:<br>
 • `%c` Prints a single character.<br>
 • `%s` Prints a string (as defined by the common C convention).<br>
 • `%p` The void * pointer argument has to be printed in *hexadecimal* format.<br>
@@ -26,6 +26,20 @@ _option 2 for italic_<sub>This is a subscript text</sub>
 The prototype of `ft_printf()` is:<br>
 `int ft_printf(const char *, ...);`
 
+Many lines of code:<br>
+```
+int	ft_printf(const char *str, ...)
+{
+	va_list	args;
+	int		printed_chars;
+
+	printed_chars = 0;
+	va_start(args, str);
+	printed_chars = mainfunction(str, args, 0);
+	va_end(args);
+	return (printed_chars);
+}
+```
 
 
 
