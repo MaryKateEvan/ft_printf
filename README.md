@@ -1,5 +1,5 @@
 # <p align="center">**ft_printf**</p>
-## <p align="center"><sup> My own version of </sup>[![My Skills](https://skillicons.dev/icons?i=c)](https://skillicons.dev)<sup>'s famous function `printf()` </sup></p>
+## <p align="center"> My own version of[![My Skills](https://skillicons.dev/icons?i=c)](https://skillicons.dev)'s famous function `printf()` </p>
 
 > The goal of this project was pretty straightforward. We had to recode `printf()`, in order to learn on the way how to handle a variable number of arguments.
 
