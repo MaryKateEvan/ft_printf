@@ -17,14 +17,14 @@ The following **9 conversions** had to be implemented:<br>
 ~~this was mistaken~~
 
 __option 2 for bold__<br>
-_option 2 for italic_
+_option 2 for italic_<sub>This is a subscript text</sub>
 
-***all bold and italic***<br>
+***all bold and italic***<sup>This is a superscript text</sup><br>
 
 > text that is a quote
 
-<sup>This is a superscript text</sup>
 
-<sub>This is a subscript text</sub>
+
+
 
 
