@@ -25,5 +25,5 @@
 - `paco --strict` was handled also, apart from simple `francinette`/`paco`. <br>
 	[In order to do that, I had to protect every `write()` return, and that's why I use the `int writefail;`.]
 - `static` was used to limit the scope of helper functions only inside the `ft_printf.c` file, since the 5 functions of `printing_functions.c` file are all called outside of that file. 
-- **No memory allocation** was used in the project.
+- **No memory allocation** was used in the project. 
 
