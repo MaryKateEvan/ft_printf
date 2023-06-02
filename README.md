@@ -3,32 +3,23 @@
 ## second header
 #### 4th level of header
 
-The following **9 conversions** had to be implemented:
-• %**c** Prints a single character.
-
-• %**s** Prints a string (as defined by the common C convention).
-
-• %**p** The void * pointer argument has to be printed in *hexadecimal* format.
-
-• %**d** Prints a decimal (base 10) number.
-
-• %**i** Prints an integer in base 10.
-
-• %**u** Prints an unsigned decimal (base 10) number.
-
-• %**x** Prints a number in hexadecimal (base 16) lowercase format.
-
-• %**X** Prints a number in hexadecimal (base 16) uppercase format.
-
-• %**%** Prints a percent sign.
+The following **9 conversions** had to be implemented:<br>
+• %**c** Prints a single character.<br>
+• %**s** Prints a string (as defined by the common C convention).<br>
+• %**p** The void * pointer argument has to be printed in *hexadecimal* format.<br>
+• %**d** Prints a decimal (base 10) number.<br>
+• %**i** Prints an integer in base 10.<br>
+• %**u** Prints an unsigned decimal (base 10) number.<br>
+• %**x** Prints a number in hexadecimal (base 16) lowercase format.<br>
+• %**X** Prints a number in hexadecimal (base 16) uppercase format.<br>
+• %**%** Prints a percent sign.<br>
 
 ~~this was mistaken~~
 
-__option 2 for bold__
-
+__option 2 for bold__<br>
 _option 2 for italic_
 
-***all bold and italic***
+***all bold and italic***<br>
 
 > text that is a quote
 
