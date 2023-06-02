@@ -1,7 +1,7 @@
 # ft_printf
-<p align="center"> "My own version of C's `printf()` function" </p>
 
 > The goal of this project was pretty straightforward. We had to recode `printf()`, in order to learn on the way how to handle a variable number of arguments.
+
 
 The following **9 conversions** had to be implemented in the project:<br>
 * `%c` Prints a single character.<br>
