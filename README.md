@@ -15,11 +15,11 @@
 * `%%` Prints a percent sign.<br>
 
 ### Structure of the project: 
-- One Makefile
-- One header file
+- One [`Makefile`](https://github.com/MaryKateEvan/ft_printf/blob/main/Makefile)
+- One header file: [`ft_printf.h`](https://github.com/MaryKateEvan/ft_printf/blob/main/ft_printf.h)
 - Two `.c` files that contain the main code of ***8 functions in total***:
-	- `ft_printf.c` that has the 3 main functions
-	- `printing_functions.c` that has the 5 functions that print the wanted output in the Standard Output using the `write()` command.
+	- [`ft_printf.c`](https://github.com/MaryKateEvan/ft_printf/blob/main/ft_printf.c) that has the 3 main functions
+	- [`printing_functions.c`](https://github.com/MaryKateEvan/ft_printf/blob/main/printing_functions.c) that has the 5 functions that print the wanted output in the Standard Output using the `write()` command.
 
 ### Additional information/notes about the code: 
 - `paco --strict` was handled also, apart from simple `francinette`/`paco`. <br>
